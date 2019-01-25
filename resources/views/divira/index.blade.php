@@ -16,15 +16,15 @@
 <body id="about">
 <div class="nav">
 <ul>
-<li><a href="{{ asset('divira/clients/goodsaltz/about.html') }}">Home</a></li>
+<li><a href="{{url('/')}}">Home</a></li>
 <li><a href="{{url('/menu')}}">Menus</a>
 
 </li>
-<li><a href="{{url('/gallery')}}">Gallery</a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/reservations.html') }}">Reservations</a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/location.html') }}">Location</a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/contact.html') }}">Contact</a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/jobs.html') }}">Join us!</a></li>
+<li><a href="{{url('/thegallery')}}">Gallery</a></li>
+<li><a href="#">Reservations</a></li>
+<li><a href="#">Location</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">Join us!</a></li>
 </ul>
 </div><div class="bg">
 <div class="slides">

@@ -1,0 +1,441 @@
+@import url(http://fonts.googleapis.com/css?family=Special+Elite);
+@import url(http://fonts.googleapis.com/css?family=Fira+Mono:400,700);
+
+/* Reset ---------------------------------------- */
+*
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	text-decoration: none;
+	font-size: 100%;
+	-webkit-text-size-adjust: none;
+	vertical-align: baseline;
+	background: transparent;
+	position: relative;
+	font-weight: normal;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html { overflow-y: scroll; }
+
+html, body
+{
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+body
+{
+	background: #000;
+	font: 16px/1.4 "Special Elite", Georgia, serif;
+	color: #000;
+}
+
+img
+{
+	border: none;
+	max-width: 100%;
+}
+
+:focus { outline: 0; }
+
+a:link, a:visited
+{
+	text-decoration: none;
+	color: #111;
+}
+
+a:hover { color: #fd3f3f; }
+a.selected { color: #fd3f3f; }
+iframe { overflow: hidden; }
+
+/* Clearfix
+---------------------------------------- */
+
+.group:before, .group:after
+{
+	content: "";
+	display: table;
+}
+
+.group:after { clear: both; }
+.group { *zoom: 1; }
+
+/* Headings ---------------------------------------- */
+h1,h2,h3,h4,h5,h6 { margin-bottom: 10px; }
+h1 { font-size: 64px; }
+
+p
+{
+	font: 13px/1.35 "Fira Mono", sans-serif;
+	color: #222;
+	font-weight: 400;
+	margin-bottom: 20px;
+}
+
+h1
+{
+	font-size: 18px;
+	color: #000;
+	margin-bottom: 10px;
+}
+
+h2, h3
+{
+	color: #aaa;
+	letter-spacing: -1px;
+	font-size: 24px;
+	line-height: 1.1;
+	margin-bottom: 20px;
+}
+
+h2
+{
+	font-size: 32px;
+	letter-spacing: -3px;
+}
+
+h4
+{
+	font-size: 13px;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	letter-spacing: 12px;
+}
+
+h5
+{
+	font-size: 12px;
+	color: #111;
+}
+
+strong { font-weight: 700; }
+ol { margin-left: 25px; }
+
+ol li
+{
+	font: 13px/1.35 "Fira Mono", sans-serif;
+	margin-bottom: 20px;
+}
+
+.bg
+{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.intro
+{
+	border: none;
+	background: #fff;
+	height: 100%;
+	width: 100%;
+	z-index: 9;
+	position: fixed;
+	display: none;
+}
+
+.intro img { width: 30%; }
+.slides { position: relative; }
+.slides .slides-container { display: none; }
+
+.slides .scrollable
+{
+	*zoom: 1;
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	height: 100%;
+}
+
+.slides .scrollable:after
+{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.slides-navigation
+{
+	margin: 0 auto;
+	position: absolute;
+	z-index: 3;
+	top: 46%;
+	width: 100%;
+}
+
+.slides-navigation a
+{
+	position: absolute;
+	display: block;
+}
+
+.slides-navigation a.prev { left: 0; }
+.slides-navigation a.next { right: 0; }
+
+.slides-pagination
+{
+	position: absolute;
+	z-index: 3;
+	bottom: 10px;
+	right: 20px;
+}
+
+.slides-pagination a
+{
+	border: 2px solid #fff;
+	border-radius: 50%;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	vertical-align: middle;
+	*vertical-align: auto;
+	zoom: 1;
+	*display: inline;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=");
+	margin: 2px;
+	overflow: hidden;
+	text-indent: -100%;
+}
+
+.slides-pagination a.current { background: #fff; }
+
+.sidebar
+{
+	width: 400px;
+	min-height: 100%;
+	background: #fff;
+	padding: 20px 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 201;
+}
+
+#about .sidebar { left: -400px; }
+
+.sidebar .logo
+{
+	max-width: 60%;
+	display: block;
+	margin: 10px auto 30px;
+}
+
+.sidebar h1
+{
+	border-bottom: 2px dotted #ddd;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.sidebar p
+{
+	background: #fff;
+	z-index: 3;
+}
+
+.sidebar p a, .sidebar h5 a { text-decoration: underline; }
+
+.social
+{
+	width: 100%;
+	text-align: center;
+	font-size: 0.75em;
+	clear: both;
+	padding-top: 80px;
+}
+
+#about .social
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding-top: 0;
+}
+
+.social img
+{
+	height: 30px;
+	display: inline-block;
+	margin: 10px auto;
+}
+
+.social img:hover
+{
+	opacity: 0.3;
+	cursor: pointer;
+}
+
+.minmax
+{
+	position: fixed;
+	bottom: 0;
+	left: 410px;
+	z-index: 3;
+}
+
+.min, .max
+{
+	width: 30px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.max { display: none; }
+
+.lbox{
+	width: 340px;
+	margin: 20px auto;
+}
+
+.lbox img
+{
+	display: inline-block;
+	margin: 2px;
+	width: 80px;
+	float: left;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea
+{
+	color: inherit;
+	font: inherit;
+	margin: 0;
+}
+
+button { overflow: visible; }
+button,
+select { text-transform: none; }
+
+button,
+html input[type="button"], 
+input[type="reset"],
+input[type="submit"]
+{
+	-webkit-appearance: none;
+	cursor: pointer;
+}
+
+input { line-height: normal; }
+
+textarea
+{
+	overflow: auto;
+	display: block;
+}
+
+input, textarea, select
+{
+	background: #eee;
+	margin-bottom: 10px;
+	width: 100%;
+	font: 13px/1.4 "Fira Mono", sans-serif;
+	padding: 5px;
+	color: #111;
+	border: 1px solid #ccc;
+}
+
+label
+{
+	display: block;
+	font: 13px/1.4 "Fira Mono", sans-serif;
+	text-align: left;
+}
+
+button[type=submit]
+{
+	background: #000;
+	color: #fff;
+	padding: 10px 15px 6px;
+	margin-bottom: 20px;
+}
+
+.cbox
+{
+	display: block;
+	padding-left: 25px;
+	text-indent: -25px;
+	font: 10px/1.3 #000;
+}
+
+.cbox input
+{
+	width: 23px;
+	height: 12px;
+	padding: 0;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	*overflow: hidden;
+	background: #fff;
+}
+
+label.error
+{
+	font-size: 10px !important;
+	color: #c8707b !important;
+	line-height: 1;
+	margin-bottom: 5px;
+	display: block;
+	clear: both;
+}
+
+input.error, textarea.error, select.error { background: #FEDDD9; }
+
+#myMap
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 40px;
+}
+
+#myMap img { max-width: none; }
+p.credit { font-size: 9px; }
+
+@media all and (max-width: 768px)
+{
+	.intro img { width: 50%; }
+	
+	.bg
+	{
+		width: 100%;
+		height: 200px;
+		position: relative;
+	}
+	
+	.sidebar
+	{
+		left: 0;
+		position: relative;
+		width: 100%;
+		min-height: 600px;
+		padding: 20px 10px;
+	}
+	
+	.lbox{ width: 290px; }
+	.lbox img{ width: 90px; }
+	#location #myMap { margin-top: 0; }
+}
+
+@media all and (min-width: 600px) and (max-width: 768px)
+{
+	.bg { height: 400px; }
+	.sidebar { padding: 20px 133px; }
+}

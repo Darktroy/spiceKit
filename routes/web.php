@@ -11,7 +11,9 @@
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('divira.index');
+    
+//    return view('divira.clients.goodsaltz.break');
 });
 Route::group(['middleware' => ['auth']], function () {
 

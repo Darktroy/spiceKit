@@ -1,0 +1,10 @@
+[
+    {
+        "model-name": "menuItems",
+        "resource-file": "menu_items.json"
+    },
+    {
+        "model-name": "gallery",
+        "resource-file": "galleries.json"
+    }
+]

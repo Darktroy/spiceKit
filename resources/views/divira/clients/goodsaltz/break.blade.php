@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+    
 <head>
 <meta charset="utf-8">
 <title>Breakfast Menu | GOODSALTZ</title>
@@ -14,16 +15,10 @@
 <div class="nav">
 <ul>
 <li><a href="../../clients/goodsaltz/about.html">Home</a></li>
-<li><a href="#">Menus</a>
-<ul>
-<li><a href="../../clients/goodsaltz/breakfast.html">Breakfast</a></li>
-<li><a href="../../clients/goodsaltz/pasta-burgers.html">Pasta, Burgers & Sandwiches</a></li>
-<li><a href="../../clients/goodsaltz/mains-asian.html">Mains & Asian Twist</a></li>
-<li><a href="../../clients/goodsaltz/desserts-drinks.html">Desserts & Drinks </a></li>
-<li><a href="../../clients/goodsaltz/menu.pdf" target="_blank">Download Full Menu (PDF)</a></li>
-</ul>
+<li><a href="{{url('/menu')}}">Menus</a>
+
 </li>
-<li><a href="../../clients/goodsaltz/gallery.html">Gallery</a></li>
+<li><a href="{{url('/gallery')}}">Gallery</a></li>
 <li><a href="../../clients/goodsaltz/reservations.html">Reservations</a></li>
 <li><a href="../../clients/goodsaltz/location.html">Location</a></li>
 <li><a href="../../clients/goodsaltz/contact.html">Contact</a></li>
@@ -44,31 +39,18 @@
           <h4>Assemble Your Own Platter (RM20*)</h4>
           <h5>Choose one from A, B, & C to construct your own personal breakfast fare: </h5>
           <br>
-          <dl> 
-            <dt>(A) FREE RANGE EGGS </dt>
-            <dd>Over Easy<br>
-							Over Hard<br>
-							Sunny Side Up<br>
-							Poached<br>
-							Scramble <br>
-							& <br>
-							Toast or Pancake<br>
-            </dd>
-            <dt>(B) MEAT CUTS</dt>
-            <dd>Bologna Chicken <br>
-							Turkey Ham <br>
-							Chicken Sausage <br>
-							Beef Sausage <br>
-							Beef Pastrami <br>
-							Beef Bacon <br>
-            </dd>
-            <dt>(C) EXTRAS</dt>
-            <dd>Rosti <br>
-							Wedges <br>
-							Herb Grilled <br>
-							Tomatoes <br>
-							Sauteed Spinach <br>
-							Green Salad </dd>
+          <dl>
+              @foreach ($menuItemsObjects as $menuItem)
+              @if($menuItem['menutypeId'] == 1)
+              <dt>{{$menuItem['title']}}&nbsp; {{$menuItem['price']}}RG</dt>
+                            <dd>
+                                @if($menuItem['image'] != null)
+                                <img width="100" hight="70" src="{{url('menuImage/'.$menuItem['image'])}}"><br>
+                                @endif
+                                    {{$menuItem['itemDescription']}}
+                            </dd>
+                @endif
+            @endforeach
           </dl>
           <div class="rm-order"> 
             <h6>*All prices are in Ringgit Malaysia & subject to: 6% Govt. Tax & 10% Service Fees</h6>
@@ -81,9 +63,23 @@
     </div>
     <div class="rm-middle"> 
       <div class="rm-inner"> 
-        <div class="rm-content"> 
+       <div class="rm-content"> 
           <h4>All Day Sunnies Breakfast</h4>
-          <dl> 
+          
+          <dl>
+              @foreach ($menuItemsObjects as $menuItem)
+              @if($menuItem['menutypeId'] == 2)
+              <dt>{{$menuItem['title']}}&nbsp; {{$menuItem['price']}}RG</dt>
+                            <dd>
+                                @if($menuItem['image'] != null)
+                                <img width="100" hight="70" src="{{url('menuImage/'.$menuItem['image'])}}"><br>
+                                @endif
+                                    {{$menuItem['itemDescription']}}
+                            </dd>
+                @endif
+            @endforeach
+          </dl>
+   <!--        <dl> 
             <dt>Sunny Rosti (RM20)</dt>
             <dd>Rosti, sunny side up egg, crispy bacon and green salad</dd>
             <dt>Hearty Omelette (RM20)</dt>
@@ -98,7 +94,7 @@
             <dd>Choice of Pancakes or Toast, Smoked Salmon, poached egg, button mushroom and hollandaise sauce</dd>
             <dt>Croissants & Coffee (RM9.90)</dt>
             <dd>Croissants, Butters and Jam</dd>
-          </dl>
+          </dl>-->
         </div>
         <div class="rm-overlay"></div>
       </div>
@@ -108,7 +104,7 @@
       <div class="rm-back"> 
         <div class="rm-content"> 
           <h4>TOASTIES & PANCAKES</h4>
-          <dl> 
+<!--          <dl> 
             <dt>Berry- Licious (RM16)</dt>
             <dd>French Toast filled with Blueberry Jam, Vanilla Sauce and Maple Whipped Cream</dd>
             <dt>Nutella Strawberry (RM16)</dt>
@@ -123,6 +119,20 @@
             <dd>Lemon Pancakes with Mustard Seed, Maple Whipped Cream and Macerated Strawberries</dd>
             <dt>Cinnamon (RM16)</dt>
             <dd>Pancakes with Cinnamon Spiced Cream Cheese Glaze and Blueberry Jam</dd>
+          </dl>-->
+
+          <dl>
+              @foreach ($menuItemsObjects as $menuItem)
+              @if($menuItem['menutypeId'] == 3)
+              <dt>{{$menuItem['title']}}&nbsp; {{$menuItem['price']}}RG</dt>
+                            <dd>
+                                @if($menuItem['image'] != null)
+                                <img width="100" hight="70" src="{{url('menuImage/'.$menuItem['image'])}}"><br>
+                                @endif
+                                    {{$menuItem['itemDescription']}}
+                            </dd>
+                @endif
+            @endforeach
           </dl>
         </div>
       </div>

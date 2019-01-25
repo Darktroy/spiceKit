@@ -26,6 +26,11 @@ class GalleriesController extends Controller
         return view('companyadminpanel.gallery.galleryListIndex', compact('galleries'));
     }
 
+    
+    public function indexHome() {
+        $galleries = gallery::all();
+        return view('divira.clients.goodsaltz.gallery', compact('galleries'));
+    }
     /**
      * Show the form for creating a new gallery.
      *

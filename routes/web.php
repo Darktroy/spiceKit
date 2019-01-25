@@ -15,6 +15,16 @@ Route::get('/', function () {
     
 //    return view('divira.clients.goodsaltz.break');
 });
+
+Route::get('/menu', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
+Route::get('/thegallery', 'GalleriesController@indexHome');
+    
+//    return view('divira.clients.goodsaltz.break');
+Route::get('/', function () {
+    return view('divira.index');
+    
+//    return view('divira.clients.goodsaltz.break');
+});
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/homeop', 'HomeController@index');
@@ -53,7 +63,10 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('menu_items_edit/{menuItems}', 'MenuItemsController@update')->name('menu_items.menu_items.update')->where('id', '[0-9]+');
 
-        Route::get('/menu_items/remove/{menuItems}','MenuItemsController@destroy')->name('menu_items.menu_items.destroy')->where('id', '[0-9]+');
+//Route::get('/remove/{menuItems}', function () {
+//    return 123;
+//});
+        Route::get('/remove/{menuItems}','MenuItemsController@destroy')->name('menu_items.menu_items.destroy')->where('id', '[0-9]+');
 
     });
 

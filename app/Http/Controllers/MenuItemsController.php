@@ -26,6 +26,13 @@ class MenuItemsController extends Controller
         return view('companyadminpanel.menuItemsListIndex',compact('name','menuItemsObjects'));
     }
 
+    
+    
+    public function indexHome() {
+        $menuItemsObjects = menuItems::with('type')->get();
+        $name = 'SpiceKitchen';
+        return view('divira.clients.goodsaltz.break',compact('name','menuItemsObjects'));
+    }
     /**
      * Show the form for creating a new menu items.
      *
@@ -149,12 +156,16 @@ class MenuItemsController extends Controller
     public function destroy($id)
     {
         try {
-            $menuItems = menuItems::findOrFail($id);
-            $menuItems->delete();
-
-            return redirect()->route('menu_items.menu_items.index')
-                             ->with('success_message', 'Menu Items was successfully deleted!');
-
+            
+            $menuItems = menuItems::where('menuItemsId',$id)->get();
+            if(count($menuItems)){
+                $menuItems[0]->delete();
+            }
+            
+            $menuItemsObjects = menuItems::with('type')->get();
+            $name = 'SpiceKitchen';
+            return view('companyadminpanel.menuItemsListIndex',compact('name','menuItemsObjects'));
+//            return redirect()->route('menu_items.menu_items.index')->with('success_message', 'Menu Items was successfully deleted!');
         } catch (Exception $exception) {
 
             return back()->withInput()

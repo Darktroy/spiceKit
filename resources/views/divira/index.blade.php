@@ -17,16 +17,10 @@
 <div class="nav">
 <ul>
 <li><a href="{{ asset('divira/clients/goodsaltz/about.html') }}">Home</a></li>
-<li><a href="#">Menus</a>
-<ul>
-<li><a href="{{ asset('divira/clients/goodsaltz/breakfast.html') }}">Breakfast</a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/pasta-burgers.html') }}">Pasta, Burgers & Sandwiches</a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/mains-asian.html') }}">Mains & Asian Twist</a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/desserts-drinks.html') }}">Desserts & Drinks </a></li>
-<li><a href="{{ asset('divira/clients/goodsaltz/menu.pdf') }}" target="_blank">Download Full Menu (PDF)</a></li>
-</ul>
+<li><a href="{{url('/menu')}}">Menus</a>
+
 </li>
-<li><a href="{{ asset('divira/clients/goodsaltz/gallery.html') }}">Gallery</a></li>
+<li><a href="{{url('/gallery')}}">Gallery</a></li>
 <li><a href="{{ asset('divira/clients/goodsaltz/reservations.html') }}">Reservations</a></li>
 <li><a href="{{ asset('divira/clients/goodsaltz/location.html') }}">Location</a></li>
 <li><a href="{{ asset('divira/clients/goodsaltz/contact.html') }}">Contact</a></li>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\bgImages;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function normalHome() {
+        $bkimages = bgImages::all();
+        return view('divira.index',compact('bkimages'));
+    }
     public function index()
     {
         $name = 'SpiceKitchen';

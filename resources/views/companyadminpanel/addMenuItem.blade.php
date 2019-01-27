@@ -38,7 +38,9 @@
             
             <div class="form-group">
               <div class="form-label-group">
-                  <input type="text" id="itemDescription" name="itemDescription" class="form-control" value="Description ..." required="required">
+                  <input type="text" id="itemDescription" name="itemDescription" 
+                         class="form-control" value="Description ..." required="required">
+                  <small>&nbsp;Please use (,) to split between ingredients</small>
                 <label for="itemDescription">Description</label>
               </div>
             </div>
@@ -51,12 +53,12 @@
               </div>
             </div>
             
-            <div class="form-group">
+<!--            <div class="form-group">
               <div class="form-label-group">
                   <input type="file" id="image" name="image" class="form-control" value="" required="required">
                 <label for="image">Image</label>
               </div>
-            </div>
+            </div>-->
             
             <!--alias-->
                 <button class="btn btn-primary btn-block">

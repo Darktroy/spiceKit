@@ -102,6 +102,11 @@
             <i class="fas fa-fw fa-anchor"></i>
             <span>Gallery</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href={{route("bg_images.bg_images.index")}}>
+            <i class="fas fa-fw fa-anchor"></i>
+            <span>Back ground</span></a>
+        </li>
       </ul>
 
       <div id="content-wrapper">

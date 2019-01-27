@@ -414,5 +414,109 @@
                 }
             }
         ]
+    },
+    {
+        "model-name": "bgImages",
+        "resource-file": "bg_images.json",
+        "table-name": "bg_images",
+        "migrations": [
+            {
+                "name": "2019_01_27_033537_create_bg_images_table",
+                "class-name": "CreateBgImagesTable",
+                "path": "/opt/lampp/htdocs/SpiceKitchen/database/migrations/2019_01_27_033537_create_bg_images_table.php",
+                "is-create": true,
+                "is-virtual": false,
+                "is-organized": false,
+                "with-soft-delete": false,
+                "without-timestamps": false,
+                "resource": {
+                    "fields": [
+                        {
+                            "name": "bgImages_id",
+                            "labels": "Bg Images",
+                            "html-type": "select",
+                            "css-class": "",
+                            "options": {},
+                            "html-value": null,
+                            "validation": "required|numeric|min:0|max:4294967295",
+                            "is-on-index": true,
+                            "is-on-show": true,
+                            "is-on-form": true,
+                            "data-type": "int",
+                            "data-type-params": [],
+                            "data-value": null,
+                            "is-index": true,
+                            "is-unique": true,
+                            "is-primary": true,
+                            "comment": null,
+                            "is-nullable": false,
+                            "is-header": false,
+                            "is-unsigned": true,
+                            "is-auto-increment": false,
+                            "is-inline-options": false,
+                            "is-date": false,
+                            "date-format": "",
+                            "cast-as": "",
+                            "placeholder": "Enter bg images here...",
+                            "delimiter": "; ",
+                            "range": [],
+                            "foreign-relation": null,
+                            "foreign-constraint": null,
+                            "on-store": null,
+                            "on-update": null
+                        },
+                        {
+                            "name": "bgImages",
+                            "labels": "Bg Images",
+                            "html-type": "number",
+                            "css-class": "",
+                            "options": {},
+                            "html-value": null,
+                            "validation": "numeric|nullable",
+                            "is-on-index": true,
+                            "is-on-show": true,
+                            "is-on-form": true,
+                            "data-type": "string",
+                            "data-type-params": [],
+                            "data-value": null,
+                            "is-index": false,
+                            "is-unique": false,
+                            "is-primary": false,
+                            "comment": null,
+                            "is-nullable": true,
+                            "is-header": false,
+                            "is-unsigned": false,
+                            "is-auto-increment": false,
+                            "is-inline-options": false,
+                            "is-date": false,
+                            "date-format": "",
+                            "cast-as": "",
+                            "placeholder": "Enter bg images here...",
+                            "delimiter": "; ",
+                            "range": [],
+                            "foreign-relation": null,
+                            "foreign-constraint": null,
+                            "on-store": null,
+                            "on-update": null
+                        }
+                    ],
+                    "relations": [],
+                    "indexes": [],
+                    "auto-manage-created-and-updated-at": true,
+                    "table-name": null,
+                    "protection": {
+                        "is-model-protected": false,
+                        "is-controller-protected": false,
+                        "is-form-request-protected": false,
+                        "is-languages-protected": false,
+                        "is-form-view-protected": false,
+                        "is-index-view-protected": false,
+                        "is-create-view-protected": false,
+                        "is-edit-view-protected": false,
+                        "is-show-view-protected": false
+                    }
+                }
+            }
+        ]
     }
 ]

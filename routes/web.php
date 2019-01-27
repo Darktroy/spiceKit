@@ -87,8 +87,41 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/del-gallery/{gallery}','GalleriesController@destroy')->name('galleries.gallery.destroy')->where('id', '[0-9]+');
 
     });
+    Route::group(
+[
+    'prefix' => 'bg_images',
+], function () {
+
+    Route::get('/', 'BgImagesController@index')
+         ->name('bg_images.bg_images.index');
+
+    Route::get('/create','BgImagesController@create')
+         ->name('bg_images.bg_images.create');
+
+    Route::get('/show/{bgImages}','BgImagesController@show')
+         ->name('bg_images.bg_images.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{bgImages}/edit','BgImagesController@edit')
+         ->name('bg_images.bg_images.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/upload', 'BgImagesController@store')
+         ->name('bg_images.bg_images.store');
+               
+    Route::put('bg_images/{bgImages}', 'BgImagesController@update')
+         ->name('bg_images.bg_images.update')
+         ->where('id', '[0-9]+');
+
+    Route::get('/del-bg_images/{bgImages}','BgImagesController@destroy')
+         ->name('bg_images.bg_images.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

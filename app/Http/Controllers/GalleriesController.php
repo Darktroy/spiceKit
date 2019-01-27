@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\gallery;
+use App\Models\bgImages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleriesFormRequest;
 use Exception;
@@ -22,6 +23,8 @@ class GalleriesController extends Controller
     public function index()
     {
         $galleries = gallery::all();
+        
+        $bkimages = bgImages::all();
 
         return view('companyadminpanel.gallery.galleryListIndex', compact('galleries'));
     }
@@ -29,7 +32,8 @@ class GalleriesController extends Controller
     
     public function indexHome() {
         $galleries = gallery::all();
-        return view('divira.clients.goodsaltz.gallery', compact('galleries'));
+        $bkimages = bgImages::all();
+        return view('divira.clients.goodsaltz.gallery', compact(['galleries','bkimages']));
     }
     /**
      * Show the form for creating a new gallery.

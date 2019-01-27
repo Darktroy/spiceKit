@@ -26,10 +26,10 @@
 </ul>
 </div><div class="bg">
 <div class="slides">
-	<div class="slides-container">
-      <img src="{{ asset('divira/clients/goodsaltz/i/bg05.jpg')}}" alt="restaurant photo">
-      <img src="{{ asset('divira/clients/goodsaltz/i/bg04.jpg')}}" alt="restaurant photo">
-      <img src="{{ asset('divira/clients/goodsaltz/i/bg07.jpg')}}" alt="restaurant photo">
+    <div class="slides-container">
+            @foreach($bkimages as $bkimage)
+                <img src="{{ url('bgImages/'.$bkimage['bgImages']) }}" alt="restaurant photo">
+            @endforeach
 	</div>
 </div>
   </div>

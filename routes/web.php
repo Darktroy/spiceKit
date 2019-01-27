@@ -10,21 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('divira.index');
-    
-//    return view('divira.clients.goodsaltz.break');
-});
+Route::get('/', 'HomeController@normalHome');
+
+//Route::get('/', function () {
+//    return view('divira.index');
+//    
+////    return view('divira.clients.goodsaltz.break');
+//});
 
 Route::get('/menu', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
 Route::get('/thegallery', 'GalleriesController@indexHome');
     
-//    return view('divira.clients.goodsaltz.break');
-Route::get('/', function () {
-    return view('divira.index');
-    
-//    return view('divira.clients.goodsaltz.break');
-});
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/homeop', 'HomeController@index');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\menuItems;
+use App\Models\menu;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuItemsFormRequest;
 use \Illuminate\Http\Request;
@@ -28,10 +29,11 @@ class MenuItemsController extends Controller
 
     
     
-    public function indexHome() {
-        $menuItemsObjects = menuItems::with('type')->get();
+    public function indexHome($id) {
+        $menuItemsObjects = menuItems::where('menu_id',$id)->with('type')->get();
+        $menus = menu::all();
         $name = 'SpiceKitchen';
-        return view('divira.clients.goodsaltz.break',compact('name','menuItemsObjects'));
+        return view('divira.clients.goodsaltz.break',compact('name','menuItemsObjects','menus'));
     }
     /**
      * Show the form for creating a new menu items.
@@ -44,8 +46,9 @@ class MenuItemsController extends Controller
         
         $menuItemsObjects = menuItems::with('type')->get();
         $menuTypes = \App\Models\menu_type::get()->toArray();
+        $menus = menu::get()->toArray();
         $name = 'SpiceKitchen';
-        return view('companyadminpanel.addMenuItem',compact('name','menuTypes'));
+        return view('companyadminpanel.addMenuItem',compact('name','menuTypes','menus'));
     }
 
     /**
@@ -63,13 +66,13 @@ class MenuItemsController extends Controller
                  throw new Exception($data->messages());
             }
             $data = $request->all();
-            if($request->hasFile("image")){
-                if (isset($data['image']) &&!empty($data['image'])){ 
-                    $imageName = 'menuItems'.time().'.'.$data['image']->getClientOriginalExtension();
-                    $data['image']->move(public_path('/menuImage'), $imageName);
-                    $data['image'] = $imageName;
-                } 
-            }
+//            if($request->hasFile("image")){
+//                if (isset($data['image']) &&!empty($data['image'])){ 
+//                    $imageName = 'menuItems'.time().'.'.$data['image']->getClientOriginalExtension();
+//                    $data['image']->move(public_path('/menuImage'), $imageName);
+//                    $data['image'] = $imageName;
+//                } 
+//            }
             DB::beginTransaction();
 
             menuItems::create($data);
@@ -113,9 +116,10 @@ class MenuItemsController extends Controller
         $menuItemsObject = menuItems::with('type')->where('menuItemsId',$id)->get()->toArray();
         $menuItemsObject = $menuItemsObject[0];
         $menuTypes = \App\Models\menu_type::get()->toArray();
+        $menus = menu::get()->toArray();
 //        dd($menuTypes);
         $name = 'SpiceKitchen';
-        return view('companyadminpanel.showEditMenuItem',compact('name','menuItemsObject','menuTypes'));
+        return view('companyadminpanel.showEditMenuItem',compact('name','menuItemsObject','menuTypes','menus'));
     }
 
     /**
@@ -181,7 +185,7 @@ class MenuItemsController extends Controller
             'title' => 'required|string|min:0',
             'itemDescription' => 'required|string|min:0',
             'price' => 'required|integer',
-            'image' => 'required|Image',
+//            'image' => 'required|Image',
      
         ];
         

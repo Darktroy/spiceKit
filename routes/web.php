@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@normalHome');
 //});
 
 Route::get('/menu', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
+Route::get('/menuList/{menu_id}', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
 Route::get('/thegallery', 'GalleriesController@indexHome');
     
 
@@ -122,3 +123,35 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::group(
+[
+    'prefix' => 'menus',
+], function () {
+
+    Route::get('/', 'MenusController@index')
+         ->name('menus.menu.index');
+
+    Route::get('/create','MenusController@create')
+         ->name('menus.menu.create');
+
+    Route::get('/show/{menu}','MenusController@show')
+         ->name('menus.menu.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{menu}/edit','MenusController@edit')
+         ->name('menus.menu.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'MenusController@store')
+         ->name('menus.menu.store');
+               
+    Route::put('menu/{menu}', 'MenusController@update')
+         ->name('menus.menu.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/menu/{menu}','MenusController@destroy')
+         ->name('menus.menu.destroy')
+         ->where('id', '[0-9]+');
+
+});

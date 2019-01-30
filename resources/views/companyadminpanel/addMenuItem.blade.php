@@ -19,6 +19,18 @@
             <div class="form-group">
               <div class="form-label-group">
                   <!--<input type="text" id="gender" name="gender" class="form-control" placeholder="Gender ..." required="required">-->
+                  <select name="menu_id" class="form-control">
+                    @foreach ($menus as $menu)
+                            <option value="{{$menu['menu_id']}}">{{$menu['menu_name']}}</option>
+                    @endforeach
+                        
+                  </select> 
+                <!--<label for="gender">Gender</label>-->
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                  <!--<input type="text" id="gender" name="gender" class="form-control" placeholder="Gender ..." required="required">-->
                   <select name="menutypeId" class="form-control">
                     @foreach ($menuTypes as $menuType)
                             <option value="{{$menuType['menuTypeId']}}">{{$menuType['name']}}</option>

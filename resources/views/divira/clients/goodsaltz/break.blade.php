@@ -15,8 +15,13 @@
 <div class="nav">
 <ul>
 <li><a href="{{url('/')}}">Home</a></li>
-<li><a href="{{url('/menu')}}">Menus</a>
+<li><a href="#">Menus</a>
 
+<ul>
+    @foreach ($menus as $menu)
+<li><a href="{{url('menuList/'.$menu['menu_id'])}}">{{$menu['menu_name']}}</a></li>
+    @endforeach
+</ul>
 </li>
 <li><a href="{{url('/thegallery')}}">Gallery</a></li>
 <li><a href="#">Reservations</a></li>

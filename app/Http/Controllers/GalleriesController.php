@@ -33,7 +33,8 @@ class GalleriesController extends Controller
     public function indexHome() {
         $galleries = gallery::all();
         $bkimages = bgImages::all();
-        return view('divira.clients.goodsaltz.gallery', compact(['galleries','bkimages']));
+        $menus = \App\Models\menu::all();
+        return view('divira.clients.goodsaltz.gallery', compact(['galleries','bkimages','menus']));
     }
     /**
      * Show the form for creating a new gallery.

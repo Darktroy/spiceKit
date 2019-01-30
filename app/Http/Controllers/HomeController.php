@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\bgImages;
+use App\Models\menu;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function normalHome() {
         $bkimages = bgImages::all();
-        return view('divira.index',compact('bkimages'));
+        $menus = menu::all();
+        return view('divira.index',compact(['bkimages','menus']));
     }
     public function index()
     {

@@ -10,5 +10,9 @@
     {
         "model-name": "bgImages",
         "resource-file": "bg_images.json"
+    },
+    {
+        "model-name": "menu",
+        "resource-file": "menus.json"
     }
 ]

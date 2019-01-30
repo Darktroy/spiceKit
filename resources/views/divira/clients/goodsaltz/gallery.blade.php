@@ -39,7 +39,7 @@
 	</div>
 </div>
   </div>
-<div class="sidebar"> 
+<div class="sidebar" > 
   <p><a href="../../clients/goodsaltz/index.html"><img src="{{ asset('divira/clients/goodsaltz/i/logo.png')}}" class="logo" alt="Goodsaltz"></a></p>
   <h1>Photo Gallery</h1>
   <p class="lbox">

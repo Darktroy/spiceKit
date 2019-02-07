@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateMenusesTable extends Migration
+class CreateHomepagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,13 @@ class CreateMenusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function(Blueprint $table)
+        Schema::create('homepages', function(Blueprint $table)
         {
-            $table->increments('menu_id');
+            $table->primary('homepageid');
             $table->timestamps();
-            $table->string('menu_name')->nullable();
+            $table->string('p1')->nullable();
+            $table->string('p2')->nullable();
+            $table->string('title', 255)->nullable();
 
         });
     }
@@ -28,6 +30,6 @@ class CreateMenusesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('menus');
+        Schema::drop('homepages');
     }
 }

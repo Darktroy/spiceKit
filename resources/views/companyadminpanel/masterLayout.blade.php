@@ -107,6 +107,16 @@
             <i class="fas fa-fw fa-anchor"></i>
             <span>Back ground</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href={{route("showContactUs.index")}}>
+            <i class="fas fa-fw fa-anchor"></i>
+            <span>Show Contact Us Messages </span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={{route("homeSeetingindex")}}>
+            <i class="fas fa-fw fa-anchor"></i>
+            <span>Home page Setting </span></a>
+        </li>
       </ul>
 
       <div id="content-wrapper">

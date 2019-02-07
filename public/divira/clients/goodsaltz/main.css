@@ -241,7 +241,7 @@ ol li
 
 .sidebar p
 {
-	background: #fff;
+	background: transparent;
 	z-index: 3;
 }
 

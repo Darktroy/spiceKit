@@ -21,13 +21,19 @@ Route::get('/', 'HomeController@normalHome');
 Route::get('/menu', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
 Route::get('/menuList/{menu_id}', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
 Route::get('/thegallery', 'GalleriesController@indexHome');
+Route::get('/about-us', 'HomeController@aboutUs');
+Route::get('/contact-us', 'ContactUsesController@create');
     
 
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/homeop', 'HomeController@index');
+    Route::post('/Home-Side', 'HomepagesController@indexSettingUpdate');
+    Route::get('/home-page-setting', 'HomepagesController@indexSetting')->name('homeSeetingindex');
+    Route::get('/show-contact-us', 'ContactUsesController@index')->name('showContactUs.index');
+    Route::get('/destroy-contact-us/{contactUs}','ContactUsesController@destroy')->where('id', '[0-9]+');
+    
     Route::group(['prefix' => 'menu_types',], function () {
-
         Route::get('/', 'MenuTypesController@index')->name('menu_types.menu_type.index');
 
         Route::get('/create','MenuTypesController@create')->name('menu_types.menu_type.create');
@@ -152,6 +158,70 @@ Route::group(
 
     Route::delete('/menu/{menu}','MenusController@destroy')
          ->name('menus.menu.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'contactus',
+], function () {
+
+    Route::get('/', 'ContactUsesController@index')
+         ->name('contact_uses.contact_us.index');
+
+    Route::get('/create','ContactUsesController@create')
+         ->name('contact_uses.contact_us.create');
+
+    Route::get('/show/{contactUs}','ContactUsesController@show')
+         ->name('contact_uses.contact_us.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{contactUs}/edit','ContactUsesController@edit')
+         ->name('contact_uses.contact_us.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'ContactUsesController@store')
+         ->name('contact_uses.contact_us.store');
+               
+    Route::put('contact_us/{contactUs}', 'ContactUsesController@update')
+         ->name('contact_uses.contact_us.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/contact_us/{contactUs}','ContactUsesController@destroy')
+         ->name('contact_uses.contact_us.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'homepages',
+], function () {
+
+    Route::get('/', 'HomepagesController@index')
+         ->name('homepages.homepage.index');
+
+    Route::get('/create','HomepagesController@create')
+         ->name('homepages.homepage.create');
+
+    Route::get('/show/{homepage}','HomepagesController@show')
+         ->name('homepages.homepage.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{homepage}/edit','HomepagesController@edit')
+         ->name('homepages.homepage.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'HomepagesController@store')
+         ->name('homepages.homepage.store');
+               
+    Route::put('homepage/{homepage}', 'HomepagesController@update')
+         ->name('homepages.homepage.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/homepage/{homepage}','HomepagesController@destroy')
+         ->name('homepages.homepage.destroy')
          ->where('id', '[0-9]+');
 
 });

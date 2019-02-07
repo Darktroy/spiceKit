@@ -45,7 +45,6 @@ class BgImagesController extends Controller
     public function store(Request $request)
     {
         try {
-//            dd($request->all()); bgImages
             $data = $this->getDataInsertion($request);
              if ($data->fails()) { 
                  throw new Exception($data->messages());

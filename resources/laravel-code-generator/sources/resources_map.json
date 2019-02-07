@@ -14,5 +14,13 @@
     {
         "model-name": "menu",
         "resource-file": "menus.json"
+    },
+    {
+        "model-name": "contactUs",
+        "resource-file": "contact_uses.json"
+    },
+    {
+        "model-name": "homepage",
+        "resource-file": "homepages.json"
     }
 ]

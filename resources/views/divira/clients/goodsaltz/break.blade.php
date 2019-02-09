@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
     
@@ -12,25 +13,41 @@
 <link rel="stylesheet" href="{{ asset('divira/clients/goodsaltz/nav.css') }}">
 </head>
 <body>
+    
 <div class="nav">
 <ul>
 <li><a href="{{url('/')}}">Home</a></li>
 <li><a href="#">Menus</a>
-
 <ul>
     @foreach ($menus as $menu)
+   
 <li><a href="{{url('menuList/'.$menu['menu_id'])}}">{{$menu['menu_name']}}</a></li>
+@if(count($menu['submenu'])>0)
+    
+        @foreach ($menu['submenu'] as $subMenu)
+        <li>
+        <li><a href="{{url('submenuList/'.$menu['menu_id'].'/'.$subMenu['submenuid'])}}">
+                &nbsp;&nbsp;&nbsp;{{$subMenu['submenu_name']}}</a></li>
+        
+        </li>
+        
+        @endforeach
+    
+@endif
     @endforeach
 </ul>
+
 </li>
+
 <li><a href="{{url('/thegallery')}}">Gallery</a></li>
 <li><a href="#">Reservations</a></li>
 <li><a href="#">Location</a></li>
-<li><a href="#">Contact</a></li>
+<li><a href="{{url('/contact-us')}}">Contact</a></li>
+<li><a href="{{url('/about-us')}}">About us</a></li>
 <li><a href="#">Join us!</a></li>
 </ul>
-    
-</div><div class="container">
+</div>
+    <div class="container">
 <section class="main"> 
   <div id="rm-container" class="rm-container"> 
     <div class="rm-wrapper"> 
@@ -48,15 +65,14 @@
           <dl>
               @foreach ($menuItemsObjects as $menuItem)
               @if($menuItem['menutypeId'] == 1)
-              <dt>{{$menuItem['title']}}&nbsp; {{$menuItem['price']}}RG</dt>
+              <dt>{{$menuItem['title']}}</dt>
+              <dt >Regular {{$menuItem['price']}}RG / Member  {{$menuItem['memberprice']}}RG</dt>
                             <dd>
-                                @if($menuItem['image'] != null)
-                                <img width="100" hight="70" src="{{url('menuImage/'.$menuItem['image'])}}"><br>
-                                @endif
-                                    {{$menuItem['itemDescription']}}
+                                {{$menuItem['itemDescription']}}
                             </dd>
                 @endif
             @endforeach
+            
           </dl>
           <div class="rm-order"> 
             <h6>*All prices are in Ringgit Malaysia & subject to: 6% Govt. Tax & 10% Service Fees</h6>
@@ -75,32 +91,14 @@
           <dl>
               @foreach ($menuItemsObjects as $menuItem)
               @if($menuItem['menutypeId'] == 2)
-              <dt>{{$menuItem['title']}}&nbsp; {{$menuItem['price']}}RG</dt>
+              <dt>{{$menuItem['title']}}&nbsp; Regular {{$menuItem['price']}}RG / Member  {{$menuItem['memberprice']}}RG</dt>
                             <dd>
-                                @if($menuItem['image'] != null)
-                                <img width="100" hight="70" src="{{url('menuImage/'.$menuItem['image'])}}"><br>
-                                @endif
-                                    {{$menuItem['itemDescription']}}
+                                {{$menuItem['itemDescription']}}
                             </dd>
                 @endif
             @endforeach
           </dl>
-   <!--        <dl> 
-            <dt>Sunny Rosti (RM20)</dt>
-            <dd>Rosti, sunny side up egg, crispy bacon and green salad</dd>
-            <dt>Hearty Omelette (RM20)</dt>
-            <dd>Eggs, Tomatoes, Onion, Mushrooms, Capsicum and Cheese with choice of Smoked Salmon or Chicken Sausage & Toast </dd>
-            <dt>Classic Reuben (RM20)</dt>
-            <dd>Toast, Beef Bacon and Pastrami, Sunny Side up Egg, and Hollandaise Dressing</dd>
-            <dt>Big Breakfast (RM25)</dt>
-            <dd>2 free range eggs, Button mushrooms, grilled tomatoes, rosti, beef bacon, chicken sausage, beef sausage, chicken ham, and toast</dd>
-            <dt>Breakfast Pie (RM20)</dt>
-            <dd>Layer of Scrambled Eggs, Chicken Ham, Grilled Peppers, Sauteed Spinach and Cheddar Cheese Baked in Pastry</dd>
-            <dt>Salmon Benedict (RM20)</dt>
-            <dd>Choice of Pancakes or Toast, Smoked Salmon, poached egg, button mushroom and hollandaise sauce</dd>
-            <dt>Croissants & Coffee (RM9.90)</dt>
-            <dd>Croissants, Butters and Jam</dd>
-          </dl>-->
+          
         </div>
         <div class="rm-overlay"></div>
       </div>
@@ -110,32 +108,13 @@
       <div class="rm-back"> 
         <div class="rm-content"> 
           <h4>TOASTIES & PANCAKES</h4>
-<!--          <dl> 
-            <dt>Berry- Licious (RM16)</dt>
-            <dd>French Toast filled with Blueberry Jam, Vanilla Sauce and Maple Whipped Cream</dd>
-            <dt>Nutella Strawberry (RM16)</dt>
-            <dd>French Toast filled with Nutella, Macerated Strawberries and Fresh Green Apples</dd>
-            <dt>Peachy Cheese (RM16)</dt>
-            <dd>Cream Cheese, Peach Compote stuffed French Toast served with Orange Butter</dd>
-            <dt class="chef"><img src="{{ asset('divira/clients/goodsaltz/i/ico.png') }}" style="width:20px; vertical-align: bottom" alt=""> Classic Pancakes (RM17)</dt>
-            <dd>Homemade Pancakes, Maple Whipped Cream, Orange Butter, choice of dark chocolate sauce or vanilla sauce & blueberry jam or peach compote</dd>
-            <dt>Red Velvet (RM16)</dt>
-            <dd>Red Velvet Pancakes, Cream Cheese Glaze and Peach Compote</dd>
-            <dt>Lemon & Seed (RM16)</dt>
-            <dd>Lemon Pancakes with Mustard Seed, Maple Whipped Cream and Macerated Strawberries</dd>
-            <dt>Cinnamon (RM16)</dt>
-            <dd>Pancakes with Cinnamon Spiced Cream Cheese Glaze and Blueberry Jam</dd>
-          </dl>-->
 
           <dl>
               @foreach ($menuItemsObjects as $menuItem)
               @if($menuItem['menutypeId'] == 3)
-              <dt>{{$menuItem['title']}}&nbsp; {{$menuItem['price']}}RG</dt>
+              <dt>{{$menuItem['title']}}&nbsp; Regular {{$menuItem['price']}}RG / Member  {{$menuItem['memberprice']}}RG</dt>
                             <dd>
-                                @if($menuItem['image'] != null)
-                                <img width="100" hight="70" src="{{url('menuImage/'.$menuItem['image'])}}"><br>
-                                @endif
-                                    {{$menuItem['itemDescription']}}
+                                {{$menuItem['itemDescription']}}
                             </dd>
                 @endif
             @endforeach

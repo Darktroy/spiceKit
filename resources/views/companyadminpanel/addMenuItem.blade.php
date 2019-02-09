@@ -21,9 +21,17 @@
                   <!--<input type="text" id="gender" name="gender" class="form-control" placeholder="Gender ..." required="required">-->
                   <select name="menu_id" class="form-control">
                     @foreach ($menus as $menu)
-                            <option value="{{$menu['menu_id']}}">{{$menu['menu_name']}}</option>
+                     
+                        @if(count($menu['submenu'])>0)
+                        @foreach ($menu['submenu'] as $subMenu)
+                                <option value="{{$menu['menu_id']}}&{{$subMenu['submenuid']}}">
+                                    {{$menu['menu_name']}} - {{$subMenu['submenu_name']}}</option>
+
+                            @endforeach
+                        @else
+                            <option value="{{$menu['menu_id']}}&0">{{$menu['menu_name']}}</option>
+                        @endif       
                     @endforeach
-                        
                   </select> 
                 <!--<label for="gender">Gender</label>-->
               </div>
@@ -62,6 +70,14 @@
               <div class="form-label-group">
                   <input type="number" id="price" name="price" class="form-control" value="Price " required="required">
                 <label for="price">price RG</label>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="form-label-group">
+                  <input type="memberprice" id="price" name="memberprice" class="form-control" 
+                         value="member price " required="required">
+                <label for="memberprice">member price RG</label>
               </div>
             </div>
             

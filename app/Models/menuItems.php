@@ -35,8 +35,9 @@ class menuItems extends Model
                     'title',
                     'menutypeId',
                     'itemDescription',
-                    'price',
-                    'menu_id'
+                    'price','memberprice',
+                    'menu_id',
+                    'submenuid'
               ];
 
     /**

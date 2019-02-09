@@ -2,40 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\homepage;
+use App\Models\Menu;
+use App\Models\submenu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
 
-class HomepagesController extends Controller
+class SubmenusController extends Controller
 {
 
     /**
-     * Display a listing of the homepages.
+     * Display a listing of the submenus.
      *
      * @return Illuminate\View\View
      */
     public function index()
     {
-        $homepages = homepage::paginate(25);
+        $submenus = submenu::with('menu')->paginate(25);
 
-        return view('homepages.index', compact('homepages'));
+        return view('submenus.index', compact('submenus'));
     }
 
     /**
-     * Show the form for creating a new homepage.
+     * Show the form for creating a new submenu.
      *
      * @return Illuminate\View\View
      */
     public function create()
     {
+        $menus = Menu::pluck('id','id')->all();
         
-        
-        return view('homepages.create');
+        return view('submenus.create', compact('menus'));
     }
 
     /**
-     * Store a new homepage in the storage.
+     * Store a new submenu in the storage.
      *
      * @param Illuminate\Http\Request $request
      *
@@ -47,10 +48,10 @@ class HomepagesController extends Controller
             
             $data = $this->getData($request);
             
-            homepage::create($data);
+            submenu::create($data);
 
-            return redirect()->route('homepages.homepage.index')
-                             ->with('success_message', 'Homepage was successfully added!');
+            return redirect()->route('submenus.submenu.index')
+                             ->with('success_message', 'Submenu was successfully added!');
 
         } catch (Exception $exception) {
 
@@ -60,7 +61,7 @@ class HomepagesController extends Controller
     }
 
     /**
-     * Display the specified homepage.
+     * Display the specified submenu.
      *
      * @param int $id
      *
@@ -68,13 +69,13 @@ class HomepagesController extends Controller
      */
     public function show($id)
     {
-        $homepage = homepage::findOrFail($id);
+        $submenu = submenu::with('menu')->findOrFail($id);
 
-        return view('homepages.show', compact('homepage'));
+        return view('submenus.show', compact('submenu'));
     }
 
     /**
-     * Show the form for editing the specified homepage.
+     * Show the form for editing the specified submenu.
      *
      * @param int $id
      *
@@ -82,14 +83,14 @@ class HomepagesController extends Controller
      */
     public function edit($id)
     {
-        $homepage = homepage::findOrFail($id);
-        
+        $submenu = submenu::findOrFail($id);
+        $menus = Menu::pluck('id','id')->all();
 
-        return view('homepages.edit', compact('homepage'));
+        return view('submenus.edit', compact('submenu','menus'));
     }
 
     /**
-     * Update the specified homepage in the storage.
+     * Update the specified submenu in the storage.
      *
      * @param  int $id
      * @param Illuminate\Http\Request $request
@@ -102,11 +103,11 @@ class HomepagesController extends Controller
             
             $data = $this->getData($request);
             
-            $homepage = homepage::findOrFail($id);
-            $homepage->update($data);
+            $submenu = submenu::findOrFail($id);
+            $submenu->update($data);
 
-            return redirect()->route('homepages.homepage.index')
-                             ->with('success_message', 'Homepage was successfully updated!');
+            return redirect()->route('submenus.submenu.index')
+                             ->with('success_message', 'Submenu was successfully updated!');
 
         } catch (Exception $exception) {
 
@@ -116,7 +117,7 @@ class HomepagesController extends Controller
     }
 
     /**
-     * Remove the specified homepage from the storage.
+     * Remove the specified submenu from the storage.
      *
      * @param  int $id
      *
@@ -125,11 +126,11 @@ class HomepagesController extends Controller
     public function destroy($id)
     {
         try {
-            $homepage = homepage::findOrFail($id);
-            $homepage->delete();
+            $submenu = submenu::findOrFail($id);
+            $submenu->delete();
 
-            return redirect()->route('homepages.homepage.index')
-                             ->with('success_message', 'Homepage was successfully deleted!');
+            return redirect()->route('submenus.submenu.index')
+                             ->with('success_message', 'Submenu was successfully deleted!');
 
         } catch (Exception $exception) {
 
@@ -148,9 +149,9 @@ class HomepagesController extends Controller
     protected function getData(Request $request)
     {
         $rules = [
-            'p1' => 'string|min:1|nullable',
-            'p2' => 'string|min:1|nullable',
-            'title' => 'string|min:1|max:255|nullable',
+            'submenuid' => 'string|min:1|nullable',
+            'menu_id' => 'nullable',
+            'submenu_name' => 'string|min:1|nullable',
      
         ];
         
@@ -158,27 +159,6 @@ class HomepagesController extends Controller
 
 
         return $data;
-    }
-    
-    
-    public function indexSetting() {
-        $name = 'SpiceKitchen';
-        $data = homepage::first();
-        return view('companyadminpanel.showEditHomeSetting',compact(['name','data']));
-    }
-    
-    public function indexSettingUpdate(Request $request) {
-        $data = $this->getData($request);
-        $name = 'SpiceKitchen';
-        $homepage = homepage::first();
-            $homepage->update($request->all());
-        return view('companyadminpanel.showEditHomeSetting',compact(['name','data']));
-        
-    }
-    
-    public function logoSetting() {
-        $name = 'SpiceKitchen';
-        return view('companyadminpanel.logoUpdateSetting',compact('name'));
     }
 
 }

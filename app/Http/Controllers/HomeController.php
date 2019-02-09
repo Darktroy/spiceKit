@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function normalHome() {
         $bkimages = bgImages::all();
-        $menus = menu::all();
+        $menus = menu::with('submenu')->get();
         $homedata = homepage::first();
         return view('divira.index',compact(['bkimages','menus','homedata']));
 //        return view('divira.clients.goodsaltz.about',compact(['bkimages','menus']));

@@ -116,8 +116,8 @@ strong { font-weight: 500; }
 
 .rm-container
 {
-	width: 33%;
-	height: 700px;
+	width: 33%;width: 33%;
+	height: -webkit-fill-available;
 	max-width: 370px;
 	margin: 0 auto 40px auto;
 	position: relative;
@@ -562,7 +562,7 @@ a.rm-viewdetails:hover,
 .no-csstransforms3d .rm-container
 {
 	width: 100%;
-	height: auto;
+	height: -webkit-fill-available;
 	max-width: 460px;
 }
 
@@ -629,7 +629,7 @@ a.rm-viewdetails:hover,
 
 @media screen and (max-width: 1110px)
 {
-	.rm-container { height: 800px; }
+	.rm-container { height: -webkit-fill-available; }
 }
 
 @media screen and (max-width: 960px)
@@ -638,7 +638,7 @@ a.rm-viewdetails:hover,
 	.rm-container
 	{
 		width: 100%;
-		height: auto;
+		height: -webkit-fill-available;
 		max-width: 460px;
 		-webkit-perspective: 0px;
 		-moz-perspective: 0px;

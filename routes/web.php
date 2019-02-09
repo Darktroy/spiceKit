@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@normalHome');
 
 Route::get('/menu', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
 Route::get('/menuList/{menu_id}', 'MenuItemsController@indexHome')->name('menu_items.menu_items.index');
+Route::get('/submenuList/{menu_id}/{submenuid}', 'MenuItemsController@subindexHome')->name('menu_items.menu_items.index');
 Route::get('/thegallery', 'GalleriesController@indexHome');
 Route::get('/about-us', 'HomeController@aboutUs');
 Route::get('/contact-us', 'ContactUsesController@create');
@@ -29,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/homeop', 'HomeController@index');
     Route::post('/Home-Side', 'HomepagesController@indexSettingUpdate');
+    Route::get('/change-logo', 'HomepagesController@logoSetting')->name('changeLogo');
     Route::get('/home-page-setting', 'HomepagesController@indexSetting')->name('homeSeetingindex');
     Route::get('/show-contact-us', 'ContactUsesController@index')->name('showContactUs.index');
     Route::get('/destroy-contact-us/{contactUs}','ContactUsesController@destroy')->where('id', '[0-9]+');
@@ -222,6 +224,38 @@ Route::group(
 
     Route::delete('/homepage/{homepage}','HomepagesController@destroy')
          ->name('homepages.homepage.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'submenus',
+], function () {
+
+    Route::get('/', 'SubmenusController@index')
+         ->name('submenus.submenu.index');
+
+    Route::get('/create','SubmenusController@create')
+         ->name('submenus.submenu.create');
+
+    Route::get('/show/{submenu}','SubmenusController@show')
+         ->name('submenus.submenu.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{submenu}/edit','SubmenusController@edit')
+         ->name('submenus.submenu.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'SubmenusController@store')
+         ->name('submenus.submenu.store');
+               
+    Route::put('submenu/{submenu}', 'SubmenusController@update')
+         ->name('submenus.submenu.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/submenu/{submenu}','SubmenusController@destroy')
+         ->name('submenus.submenu.destroy')
          ->where('id', '[0-9]+');
 
 });

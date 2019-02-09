@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class menu extends Model
+class submenu extends Model
 {
     
 
@@ -13,14 +13,17 @@ class menu extends Model
      *
      * @var string
      */
-    protected $table = 'menus';
+    protected $table = 'submenus';
 
     /**
     * The database primary key value.
     *
     * @var string
     */
-    protected $primaryKey = 'menu_id';
+    protected $primaryKey = 'submenuid';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
 
     /**
      * Attributes that should be mass-assignable.
@@ -28,7 +31,8 @@ class menu extends Model
      * @var array
      */
     protected $fillable = [
-                  'menu_name'
+                  'menu_id',
+                  'submenu_name'
               ];
 
     /**
@@ -45,9 +49,14 @@ class menu extends Model
      */
     protected $casts = [];
     
-    public function submenu() {
-        return $this->hasMany('App\Models\submenu', 'menu_id');
+    /**
+     * Get the menu for this model.
+     */
+    public function menu()
+    {
+        return $this->belongsTo('App\Models\Menu','menu_id');
     }
+
 
 
 }

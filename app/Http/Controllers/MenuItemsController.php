@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\menuItems;
 use App\Models\menu;
+use App\Models\bgImages;
+use App\Models\homepage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuItemsFormRequest;
 use \Illuminate\Http\Request;
@@ -33,8 +35,24 @@ class MenuItemsController extends Controller
         $menuItemsObjects = menuItems::where('menu_id',$id)->with('type')->get();
         $menus = menu::all();
         $name = 'SpiceKitchen';
-        return view('divira.clients.goodsaltz.break',compact('name','menuItemsObjects','menus'));
+        $bkimages = bgImages::all();
+        $homedata = homepage::first();
+        return view('divira.clients.goodsaltz.break',compact('bkimages','name','menuItemsObjects','menus','homedata'));
     }
+    public function subindexHome($id,$submenuid) {
+         
+        $menuItemsObjects = menuItems::where('menu_id',$id)->where('submenuid',$submenuid)
+                ->with('type')->get();
+        
+        $menus = menu::with('submenu')->get();
+        $name = 'SpiceKitchen';
+        $bkimages = bgImages::all();
+        $homedata = homepage::first();
+        return view('divira.clients.goodsaltz.break',compact('bkimages','name','menuItemsObjects','menus','homedata'));
+    }
+    
+    
+    
     /**
      * Show the form for creating a new menu items.
      *
@@ -46,7 +64,7 @@ class MenuItemsController extends Controller
         
         $menuItemsObjects = menuItems::with('type')->get();
         $menuTypes = \App\Models\menu_type::get()->toArray();
-        $menus = menu::get()->toArray();
+        $menus = menu::with('submenu')->get()->toArray();
         $name = 'SpiceKitchen';
         return view('companyadminpanel.addMenuItem',compact('name','menuTypes','menus'));
     }
@@ -66,6 +84,9 @@ class MenuItemsController extends Controller
                  throw new Exception($data->messages());
             }
             $data = $request->all();
+                $temp = explode('&',$data['menu_id'] )  ;
+                $data['menu_id'] = $temp[0];
+                $data['submenuid'] = $temp[1];
 //            if($request->hasFile("image")){
 //                if (isset($data['image']) &&!empty($data['image'])){ 
 //                    $imageName = 'menuItems'.time().'.'.$data['image']->getClientOriginalExtension();
@@ -73,6 +94,10 @@ class MenuItemsController extends Controller
 //                    $data['image'] = $imageName;
 //                } 
 //            }
+            $testingCounter = menuItems::where('menutypeId',$data['menutypeId'])->count();
+            if($testingCounter>2){
+                throw new Exception('this side of menu is full');
+            }
             DB::beginTransaction();
 
             menuItems::create($data);
@@ -185,6 +210,7 @@ class MenuItemsController extends Controller
             'title' => 'required|string|min:0',
             'itemDescription' => 'required|string|min:0',
             'price' => 'required|integer',
+            'memberprice' => 'required|integer',
 //            'image' => 'required|Image',
      
         ];

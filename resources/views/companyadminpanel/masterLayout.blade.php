@@ -117,6 +117,11 @@
             <i class="fas fa-fw fa-anchor"></i>
             <span>Home page Setting </span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href={{route("changeLogo")}}>
+            <i class="fas fa-fw fa-anchor"></i>
+            <span>Add New logo </span></a>
+        </li>
       </ul>
 
       <div id="content-wrapper">
